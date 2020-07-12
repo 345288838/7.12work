@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr=[1,2,5,6,9,8,4];
+        //向数组的末尾追加元素,会修改原数组
+        arr.push(25,26);
+        console.log(arr);
+        //向数组的开头添加函数
+        arr.unshift(25,26);
+        console.log(arr);
+        //删除末尾的元素
+        arr.pop();
+        console.log(arr);
+        //开头删除一个元素
+        arr.shift();
+        console.log(arr);
+        //arr.splice(位置，删除元素的个数，要追加的元素); 任意位置添加删除
+        arr.splice(0,1,100);
+        console.log(arr);
+        arr.splice(1,5);
+        console.log(arr);
+        arr.splice(1,0,200);
+        console.log(arr);
+        //使用分隔符将数组数据隔开变为字符串
+        console.log(arr.join('/'));
+        // 数组的截取,截取时，包含起始下标，不包含结束下标
+        console.log(arr.slice(0,3));
+        console.log(arr);
+        //多个数组的连接
+        var arr1=[55,66,77];
+        console.log(arr.concat(arr1));
+        //查找某个值在数组中第一次出现的下标,没有找到则返回-1
+        console.log(arr.indexOf(25));
+        console.log(arr.indexOf(88));
+        //倒叙查找某个值在数组中第一次出现的位置
+        console.log(arr);
+        console.log(arr.lastIndexOf(25));
+        //数组的排序
+        //如果没有参数，则从字符的编码开始按顺序排
+        //如果有参数，这个参数必须是一个函数（回调函数）这个回调函数有两个参数，分别是a，b
+        //修改原数组
+        arr.sort(function(a,b){
+            return a-b;//正序
+            //renturn b-a;倒序
+        })
+        console.log(arr);
+        //遍历数组
+        arr.forEach(function(value,index){
+            console.log(value,index);
+        })
+        //过滤（根据条件筛选数组元素）
+        var newArr=arr.filter(function(value,index){
+            return index>0;
+        })
+        console.log(newArr);
+        //将数组中的所有数据按照条件改变，形成新数组
+        var newArr1=arr.map(function(value,index){
+            return value*2;
+        })
+        console.log(arr);
+        console.log(newArr1);
+        //根据回调函数的判断条件来选择真假
+        //只要有一个回调函数返回值是true，最终some结果是true；
+        var end=arr.some(function(value,index){
+            return value<200;
+        }) 
+        console.log(end);
+        //只要有一个回调函数返回值是false，最终every结果是false；
+        var end1=arr.every(function(value,index){
+            return value<200;
+        })
+        console.log(end1);
+        //数组倒序,改变原数组
+        arr.reverse();
+        console.log(arr);
+        //将两类对象转为真正的数组
+        var a={length:2};
+        console.log(Array.from(a));
+        //将一组值，转换为数组
+        console.log(Array.of(1,2,3));
+        //检查数组是否包含某元素
+        console.log(arr);
+        console.log(arr.includes(25));
+        console.log(arr.includes(0));
+        //数组顺序打乱
+        arr.sort(()=>Math.random()-0.5);
+        console.log(arr);
+    </script>
+</body>
+</html>

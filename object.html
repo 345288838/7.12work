@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 对象的拼接assign
+        var obj1={name:"zhangsan"};
+        var obj2={age:12};
+        var obj3={say:function(){
+            console.log("i am speaking.")
+        }}
+        console.log(Object.assign(obj1,obj2,obj3));
+        console.log(obj1);
+        // 对象拷贝
+        var obj={name:"zhangsan",age:20};
+        var newObj=Object.assign({},obj);
+        console.log(newObj);
+        // 判断两个值是否相同
+        console.log(Object.is(+0,-0));
+        console.log(Object.is(NaN,NaN));
+        // 确定一个对象是否存在于另一个对象的原型链中
+        function a(){
+        }
+        var b=new a();
+        console.log(a.prototype.isPrototypeOf(b));
+        // 直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。如果不指定configurable, writable, enumerable ，则这些属性默认值为false，如果不指定value, get, set，则这些属性默认值为undefined
+        var objec=new Object();
+        Object.defineProperty(objec,'name',{
+            configurable:false,
+            writable:true,
+            enumerable:true,
+            value:'zhangsan'
+        })
+        console.log(objec.name);
+        // 直接在一个对象上定义一个或多个新的属性或修改现有属性，并返回该对象。
+        // value: 属性对应的值,可以使任意类型的值，默认为 undefined
+        // configurable: 是否可以删除目标属性或是否可以再次修改属性的特性（writable, configurable, enumerable）。设置为true可以被删除或可以重新设置特性；设置为false，不能被可以被删除或不可以重新设置特性。默认为false。
+        // writable: 属性的值是否可以被重写。设置为true可以被重写。默认为false。
+        // enumerable: 属性是否可以被枚举(使用for...in或Object.keys())。设置为true可以被枚举。默认为false。
+        var obje=new Object();
+        Object.defineProperties(obje,{
+            name:{
+                value:'zhangsan',
+                configurable:false,
+                writable:true,
+                enumerable:true
+            },
+            age:{
+                value:19,
+                configurable:true
+            }
+        })
+        console.log(obje.name,obje.age);
+        // 阻止修改现有属性的特性和值，并阻止添加新属性。
+        var obj4={name:'zhangsan',age:18};
+        Object.freeze(obj4);
+        obj4.name='lisi';
+        obj4.sex='man';
+        console.log(obj4);
+        // 用途：用const声明的对象属性方法任然可修改，可以利用这个方法将对象彻底冻结，使其符合const变量的含义
+        Object.freeze(obj)
+        obj.name='lisi'; 
+        console.log(obj.name);
+        // 对象的遍历
+        // for in循环
+        var obj5={
+            name:'小米',
+            age:18,
+            say:function(){
+                console.log('hello');
+            }
+        }
+        for(var i in obj5){
+            console.log(obj5[i]);
+        }
+        // 返回一个数组，包括对象自身的（不含继承的）所有可枚举属性（不含 Symbol 属性）的键名。
+        var obj6={'a':'123',"b":'345'};
+        console.log(Object.keys(obj6)); 
+        // 如果键名是数字，则按从小到大排列
+        var obj7={100:"a",2:"b",7:"c"};
+        console.log(Object.keys(obj7));
+
+        var obj8 = Object.create({}, { getFoo : { value : function () { return this.foo } } });
+        obj8.foo = 1;
+        console.log(Object.keys(obj8));
+        // 返回一个数组,包含对象自身的所有属性(不含Symbol属性,但是包括不可枚举属性).
+        console.log(Object.getOwnPropertyNames(obj));
+        // 返回一个数组，包含对象自身的所有Symbol属性。
+        console.log(Object.getOwnPropertySymbols(obj));
+        // 返回一个数组,包含对象自身的所有属性,不管属性名是Symbol或字符串,也不管是否可枚举.
+        console.log( Reflect.ownKeys(obj));
+        // 方法返回一个给定对象自身的所有可枚举属性值的数组，值的顺序与使用for...in循环的顺序相同( 区别在于 for-in 循环枚举原型链中的属性 )。
+        console.log(Object.values(obj));
+    </script>
+</body>
+</html>
